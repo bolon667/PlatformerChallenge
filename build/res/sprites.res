@@ -1,0 +1,9 @@
+SPRITE spr_barier1 "sprites/barier1.png" 2 10 FAST 0
+SPRITE spr_coin "sprites/coin.png" 3 3 FAST 0
+SPRITE spr_debugLeftTopCorner "sprites/debugLeftTopCorner.png" 1 1 FAST 0
+SPRITE spr_debugRightBottom "sprites/debugRightBottom.png" 1 1 FAST 0
+SPRITE spr_engieJoke "sprites/engieJoke-8_8_5.png" 8 8 FAST 5
+SPRITE spr_killer_box "sprites/killer_box.png" 3 3 FAST 0
+SPRITE spr_player "sprites/player-3_3_5.png" 3 3 FAST 5
+SPRITE spr_sgdk_boss "sprites/sgdk_boss.png" 6 8 FAST 0
+SPRITE spr_sonic_ball "sprites/sonic_ball-4_4_5.png" 4 4 FAST 5

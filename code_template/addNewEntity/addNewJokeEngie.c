@@ -1,20 +1,20 @@
 EntityMerged* addNew_JokeEngie(Vect2D_s16 posInt, Vect2D_f16 spd){
-    Trigger* foundTrigger = NULL;
-    //$addNewTrigger$
-
-    //find first free index in arr
     KDebug_Alert("new JokeEngie");
     for(u16 i=0; i<curEntityAll->EntityMerged_size; i++){
         if(!curEntityAll->EntityMerged_arr[i].alive){
+            //Copying template of default values
             memcpy(&curEntityAll->EntityMerged_arr[i], &JokeEngie_default, sizeof(EntityMerged));
+            //Changing pos
             curEntityAll->EntityMerged_arr[i].posInt = posInt;
             curEntityAll->EntityMerged_arr[i].pos = (Vect2D_f32){FIX32(posInt.x), FIX32(posInt.y)};
+            //Changing spd
             curEntityAll->EntityMerged_arr[i].spd = spd;
+            //Changing making entity ALIVE
             curEntityAll->EntityMerged_arr[i].alive = TRUE;
             KDebug_Alert("Success for JokeEngie!");
-            return;
+            return &curEntityAll->EntityMerged_arr[i];
         }
     }
     KDebug_Alert("Fail for JokeEngie...");
-    return;
+    return NULL;
 }

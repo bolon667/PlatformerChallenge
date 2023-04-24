@@ -19,7 +19,9 @@ void updatePlayer() {
 		playerBody.curAmountOfJumps--;
 		playerBody.jumping = TRUE;
 			//Play the SFX with the index 64 (jump sfx) with the highest priority
-		XGM_startPlayPCM(64, 15, SOUND_PCM_CH1);
+		
+		//Commented because, if you not using default XGM driver, you will get a ear damage. It's really DANGEROUS you can get partially deaf in real life.
+		// XGM_startPlayPCM(64, 15, SOUND_PCM_CH1);
 		playerBody.velocity.fixY = FIX16(-playerBody.jumpSpeed);
 		}
 	}
@@ -42,8 +44,8 @@ void updatePlayer() {
 				playerBody.velocity.fixX -= playerBody.deceleration;
 			else if (playerBody.velocity.x < 0)
 				playerBody.velocity.fixX += playerBody.deceleration;
-			else
-				playerBody.velocity.fixX = 0;
+			// else
+			// 	playerBody.velocity.fixX = 0;
 		}
 		playerBody.velocity.x = clamp(fix16ToInt(playerBody.velocity.fixX), -playerBody.speed, playerBody.speed);
 	}
@@ -58,11 +60,19 @@ void updatePlayer() {
 	}
 
 	//Once all the input-related have been calculated, we apply the velocities to the global positions
-	playerBody.globalPosition.x += playerBody.velocity.x;
-	playerBody.globalPosition.y += fix16ToInt(playerBody.velocity.fixY);
+	playerBody.globalPosition.x += playerBody.velocity.x + fix16ToInt(playerBody.velocity.bufferFixX);
+	playerBody.globalPosition.y += fix16ToInt(playerBody.velocity.fixY + playerBody.velocity.bufferFixY);
+
+	playerBody.velocity.bufferFixX = playerBody.velocity.bufferFixX - FIX16(fix16ToInt(playerBody.velocity.bufferFixX));
+	playerBody.velocity.bufferFixY = playerBody.velocity.bufferFixY - FIX16(fix16ToInt(playerBody.velocity.bufferFixY));
 
 	//Now we can check for collisions and correct those positions
 	checkCollisions();
+
+	//Checking trigger collision with player
+	for(u16 i=0; i<curEntityAll->Trigger_size; i++){
+		checkTriggerForPlayer(&curEntityAll->Trigger_arr[i]);
+	}
 
 	//Now that the collisions have been checked, we know if the player is on a stair or not
 	if (!collidingAgainstStair && playerBody.climbingStair) {
@@ -78,12 +88,6 @@ void updatePlayer() {
 SPR_setPosition(playerBody.debugSpr2, playerBody.position.x+playerBody.aabb.max.x-8, playerBody.position.y+playerBody.aabb.max.y-8);
 
 	
-
-	//Reset when falling off the screen
-	if (playerBody.falling) {
-		dyingSteps++;
-		if(dyingSteps > dieDelay){
-			SYS_hardReset();
-		}
-	}
+	updateAnimations();
+	playerInputChanged();
 }

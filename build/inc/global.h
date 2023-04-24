@@ -30,13 +30,15 @@
 
 extern s16 backXScroll;
 extern s16 backYScroll;
-
+extern Vect2D_s16 curChunkPos;
+extern Vect2D_s16 prevChunkPos;
 extern const fix16 gravityScale;
 
+extern u8* curMusic;
+
 struct {
-	u16 joy;
-	u16 changed;
 	u16 state;
+	u16 prevState;
 }input;
 
 extern Map* bga;
@@ -46,3 +48,4 @@ extern AABB roomSize;
 extern AABB playerBounds;
 
 extern u16 VDPTilesFilled;
+

@@ -12,8 +12,8 @@ out/src/loadLevel.o: src/loadLevel.c src/../inc/levels.h \
  C:/SGDK/inc/z80_ctrl.h C:/SGDK/inc/ym2612.h C:/SGDK/inc/psg.h \
  C:/SGDK/inc/joy.h C:/SGDK/inc/timer.h C:/SGDK/inc/task.h \
  C:/SGDK/inc/task_cst.h src/../inc/global.h src/../inc/physics.h \
- src/../inc/types.h src/../inc/loadLevel.h src/../inc/maps.h \
- src/../inc/player.h src/../inc/camera.h src/../inc/customScripts.h \
- src/../res/resources.h src/../res/tilesets.h src/../res/gfx.h \
- src/../res/sprites.h src/../res/sounds.h src/../res/music.h \
- src/../res/images.h
+ src/../inc/types.h src/../inc/loadLevel.h src/../inc/deallocLevel.h \
+ src/../inc/allocLevel.h src/../inc/maps.h src/../inc/player.h \
+ src/../inc/camera.h src/../inc/customScripts.h src/../res/resources.h \
+ src/../res/gfx.h src/../res/sprites.h src/../res/sounds.h \
+ src/../res/music.h src/../res/images.h

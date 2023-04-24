@@ -11,13 +11,16 @@
 #include "../inc/global.h"
 
 
-
+void printMessageNoStop(char* str, bool vertSide, u16 windowTiles) {
+	VDP_setWindowVPos(vertSide, windowTiles);
+	VDP_drawTextBG(WINDOW, str, 0, 0);
+}
 
 
 void printMessageBase(char* str, Image* img_msg_sign, u8 msg_sign_pal) {
 	
 	VDP_setWindowVPos(FALSE, 10);
-	VDP_drawImageEx(WINDOW, img_msg_sign, TILE_ATTR_FULL(msg_sign_pal, 255, FALSE, FALSE, VDPTilesFilled), 0, 0, FALSE, TRUE);
+	VDP_drawImageEx(WINDOW, img_msg_sign, TILE_ATTR_FULL(msg_sign_pal, 255, FALSE, FALSE, VDPTilesFilled), 0, 0, FALSE, FALSE);
 	
 
 	u32 str_len = strlen(str);
@@ -98,7 +101,7 @@ void printMessageBase(char* str, Image* img_msg_sign, u8 msg_sign_pal) {
 							cur_y = 0;
 							skip = FALSE;
 							can_skip = FALSE;
-							VDP_drawImageEx(WINDOW, &img_message_sign, TILE_ATTR_FULL(PAL2, 255, FALSE, FALSE, VDPTilesFilled), 0, 0, FALSE, TRUE);
+							VDP_drawImageEx(WINDOW, &img_message_sign, TILE_ATTR_FULL(PAL2, 255, FALSE, FALSE, VDPTilesFilled), 0, 0, FALSE, FALSE);
 							break;
 						}
 					} else {

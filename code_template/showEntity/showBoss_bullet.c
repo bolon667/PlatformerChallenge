@@ -35,5 +35,7 @@ void showBoss_bullet(EntityMerged* entity){
 		entity->trigger->pos.x = entity->posInt.x;
 		entity->trigger->pos.y = entity->posInt.y;
 		entity->onScreen = TRUE;
+
+		
     }
 }

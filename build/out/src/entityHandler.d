@@ -13,6 +13,6 @@ out/src/entityHandler.o: src/entityHandler.c src/../inc/levels.h \
  C:/SGDK/inc/joy.h C:/SGDK/inc/timer.h C:/SGDK/inc/task.h \
  C:/SGDK/inc/task_cst.h src/../inc/global.h src/../inc/physics.h \
  src/../inc/types.h src/../inc/maps.h src/../inc/messages.h \
- src/../inc/enums.h src/../res/resources.h src/../res/gfx.h \
- src/../res/sprites.h src/../inc/camera.h src/../inc/player.h \
- src/../inc/customScripts.h
+ src/../inc/enums.h src/../res/resources.h src/../res/images.h \
+ src/../res/gfx.h src/../res/sprites.h src/../inc/camera.h \
+ src/../inc/player.h src/../inc/customScripts.h

@@ -37,7 +37,9 @@ typedef struct {
 	u8* collArr;
 	Vect2D_s16 sizeinPx;
 	Vect2D_s16 sizeinTiles;
+	Vect2D_s16 sizeinChunks;
 	u8* music;
+	u32 musicSizeof;
 	void (*beforeLevelFunc)(void);
 	void (*everyFrameFunc)(void);
 	void (*afterLevelFunc)(void);
@@ -45,6 +47,15 @@ typedef struct {
 	Palette* pal1;
 	Palette* pal2;
 	Palette* pal3;
+	u8 levelMode;
+	u16 controlScript;
+	u16 updateCameraScript;
+	u8 bgaPalIndex;
+	u8 bgbPalIndex;
+	u8 musicMode;
+	u8 pcmChannel;
+	u8 musicLoop;
+	u8 freshMusicStart;
 } Level;
 
 
@@ -115,6 +126,7 @@ typedef struct {
 
 typedef struct {
   u16 entityType;
+  u16 instId;
   bool alive;
   Vect2D_s16 posInt;
   Vect2D_f32 pos;
@@ -124,6 +136,9 @@ typedef struct {
   Trigger* trigger;
   u16 triggerInd;
   Sprite* spr;
+  bool activated;
+  struct EntityMerged *slaves_arr[10];
+  u16 slave_amount;
   Sprite* debugSpr1;
   Sprite* debugSpr2;
   SpriteDefinition* sprDef;
@@ -136,6 +151,31 @@ typedef struct {
 
 
 typedef struct {
+  s16 val1;
+  s16 val2;
+  s16 val3;
+} LocalVariableMerged;
+
+
+typedef struct
+{
+	u16 size;
+	EntityMerged* entityArr;
+} EntityMergedChunk;
+
+
+typedef struct {
+	u16 additionalEntityMergedSlots;
+    u16 EntityBulletMerged_size;
+	EntityBulletMerged* EntityBulletMerged_arr;
+	u16 EntityMerged_size;
+EntityMerged* EntityMerged_arr;
+
+	u16 Trigger_size;
+	Trigger* Trigger_arr;
+} EntityAll;
+
+typedef struct {
 	u16 additionalEntityMergedSlots;
     u16 EntityBulletMerged_size;
 	EntityBulletMerged* EntityBulletMerged_arr;
@@ -143,12 +183,13 @@ typedef struct {
 	EntityMerged* EntityMerged_arr;
 	u16 Trigger_size;
 	Trigger* Trigger_arr;
-} EntityAll;
+} EntityAllPlayer;
 
 typedef struct {
     Level* lvl;
     EntityAll* entityAll_arr;
 	MessagePack* messagePacks;
+	LocalVariableMerged* variable_arr;
 } LevelFull;
 
 AABB newAABB(s16 x1, s16 x2, s16 y1, s16 y2);

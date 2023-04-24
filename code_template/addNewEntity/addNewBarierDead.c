@@ -1,7 +1,5 @@
 EntityMerged* addNew_BarierDead(Vect2D_s16 posInt, Vect2D_f16 spd){
     Trigger* foundTrigger = NULL;
-    //find first free index in arr
-    
     KDebug_Alert("new Trigger");
     for(u16 i=0; i<curEntityAll->Trigger_size; i++){
         if(!curEntityAll->Trigger_arr[i].alive){
@@ -15,22 +13,29 @@ EntityMerged* addNew_BarierDead(Vect2D_s16 posInt, Vect2D_f16 spd){
     }
     if(foundTrigger == NULL) {
         KDebug_Alert("Fail for Trigger and for BarierDead...");
-        return;
+        return NULL;
     }
 
-    //find first free index in arr
-    KDebug_Alert("new BarierDead");
     for(u16 i=0; i<curEntityAll->EntityMerged_size; i++){
         if(!curEntityAll->EntityMerged_arr[i].alive){
+            //Copying template of default values
             memcpy(&curEntityAll->EntityMerged_arr[i], &BarierDead_default, sizeof(EntityMerged));
+            //Changing pos
             curEntityAll->EntityMerged_arr[i].posInt = posInt;
             curEntityAll->EntityMerged_arr[i].pos = (Vect2D_f32){FIX32(posInt.x), FIX32(posInt.y)};
+            //Changing spd
             curEntityAll->EntityMerged_arr[i].spd = spd;
+            //Changing making entity ALIVE
             curEntityAll->EntityMerged_arr[i].alive = TRUE;
+            //Adding trigger to entity
+            curEntityAll->EntityMerged_arr[i].trigger = foundTrigger;
             KDebug_Alert("Success for BarierDead!");
-            return;
+            return &curEntityAll->EntityMerged_arr[i];
         }
     }
     KDebug_Alert("Fail for BarierDead...");
-    return;
+    return NULL;
 }
+
+    
+    

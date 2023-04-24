@@ -11,6 +11,8 @@ struct pBody {
 	Sprite* debugSpr1;
 	Sprite* debugSpr2;
 	AABB aabb;
+	AABB normalAABB;
+	AABB slidingAABB;
 	AABB climbingStairAABB;
 
 	int facingDirection;
@@ -26,17 +28,30 @@ struct pBody {
 	bool onGround;
 	bool onStair;
 	bool onSemiSolid;
+	bool semiSolidHasCollision;
 	bool jumping;
 	bool falling;
 	bool climbingStair;
 	bool attack;
 
 	bool damaged;
+	bool godMode;
+	bool isVisible;
+	bool sliding;
+	bool cantControl;
 
 	s16 animMode;
+	s16 val1;
+	s16 state;
+	bool isCombo;
 	bool animModeChangable;
 
+	u16 attackType;
+
+	bool dead;
 	s16 hp;
+
+	u16 vdpIndexPos;
 	
 	Vect2D_s16 position;
 	Vect2D_s16 globalPosition;
@@ -46,9 +61,11 @@ struct pBody {
 		fix16 fixX;
 		s16 x;
 		fix16 fixY;
+		fix16 bufferFixX;
+		fix16 bufferFixY;
 	}velocity;
 
-	
+	s16 timer;
 
 	s16 curAmountOfJumps;
 	s16 maxAmountOfJumps;

@@ -11,6 +11,8 @@ void showKillerBox(EntityMerged* entity){
 			if(entity->sprDef) {
 				SPR_releaseSprite(entity->spr);
 				//$showTriggerRects_releaseSprite$
+				entity->trigger->alive = FALSE;
+				entity->alive = FALSE;
 			}
 		}
 		entity->onScreen = FALSE;

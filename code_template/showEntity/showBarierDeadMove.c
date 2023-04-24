@@ -36,12 +36,18 @@ void showBarierDeadMove(EntityMerged* entity){
 			}
 
 			//Update position
+
+			if(curLocalVariables->val3 == 123){
+				entity->pos.y += 100;
+			}
 			entity->pos.x += entity->spd.x;
 			entity->pos.y += entity->spd.y;
 			entity->posInt.x = fix32ToInt(entity->pos.x);
 			entity->posInt.y = fix32ToInt(entity->pos.y);
 			entity->trigger->pos.x = entity->posInt.x;
 			entity->trigger->pos.y = entity->posInt.y;
+
+			
 		
 		}
 		//$showTriggerRects_moveSprite$

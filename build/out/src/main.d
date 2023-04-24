@@ -12,4 +12,6 @@ out/src/main.o: src/main.c C:/SGDK/inc/genesis.h C:/SGDK/inc/types.h \
  C:/SGDK/inc/psg.h C:/SGDK/inc/joy.h C:/SGDK/inc/timer.h \
  C:/SGDK/inc/task.h C:/SGDK/inc/task_cst.h src/../inc/levels.h \
  src/../inc/global.h src/../inc/physics.h src/../inc/types.h \
- src/../inc/camera.h src/../inc/player.h src/../inc/entityHandler.h
+ src/../inc/camera.h src/../inc/player.h src/../inc/enums.h \
+ src/../inc/preGameInit.h src/../inc/entityHandler.h \
+ src/../inc/customScripts.h
